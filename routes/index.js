@@ -365,3 +365,5 @@ exports.chat = {
     res.send({ ok: true });
   }
 };
+
+console.log("hello world")
