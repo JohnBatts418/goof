@@ -365,3 +365,5 @@ exports.chat = {
     res.send({ ok: true });
   }
 };
+
+console.log("main doesnt have these vulns, but that shouldnt matter, as we're merging to dev")
