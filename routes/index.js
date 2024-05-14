@@ -187,6 +187,18 @@ exports.create = function (req, res, next) {
   });
 };
 
+exports.destroy = function (req, res, next) {
+  Todo.findById(req.params.id, function (err, todo) {
+
+    try {
+      todo.remove(function (err, todo) {
+        if (err) return next(err);
+        res.redirect('/');
+      });
+    } catch (e) {
+    }
+  });
+};
 
 exports.edit = function (req, res, next) {
   Todo.
@@ -203,6 +215,18 @@ exports.edit = function (req, res, next) {
     });
 };
 
+exports.update = function (req, res, next) {
+  Todo.findById(req.params.id, function (err, todo) {
+
+    todo.content = req.body.content;
+    todo.updated_at = Date.now();
+    todo.save(function (err, todo, count) {
+      if (err) return next(err);
+
+      res.redirect('/');
+    });
+  });
+};
 
 // ** express turns the cookie key to lowercase **
 exports.current_user = function (req, res, next) {
@@ -341,3 +365,5 @@ exports.chat = {
     res.send({ ok: true });
   }
 };
+
+console.log("hello world")
